@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  board_id: MyString
+  pre_planning: MyText
+  pos_planning: MyText
+  start_date: 2023-05-20
+  end_date: 2023-05-20
+  status: MyString
+
+two:
+  name: MyString
+  board_id: MyString
+  pre_planning: MyText
+  pos_planning: MyText
+  start_date: 2023-05-20
+  end_date: 2023-05-20
+  status: MyString

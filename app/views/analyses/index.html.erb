@@ -1,0 +1,36 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Analyses</h1>
+
+<table>
+  <thead>
+    <tr>
+        <th>Name:</th>
+        <th>Board:</th>
+        <th>Pre planning:</th>
+        <th>Pos planning:</th>
+        <th>Start date:</th>
+        <th>end date:</th>
+        <th>Status:</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @analyses.each do |analysis| %>
+    <tr>
+      <td><%= analysis.name %></td>
+      <td><%= analysis.board_id %></td>
+      <td><%= analysis.pre_planning %></td>
+      <td><%= analysis.pos_planning %></td>
+      <td><%= analysis.start_date %></td>
+      <td><%= analysis.end_date %></td>
+      <td><%= analysis.status %></td>
+      <td><%= link_to "Show this analysis", analysis %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New analysis", new_analysis_path %>
+<br />
+<%= link_to "Back to home", root_path %>
