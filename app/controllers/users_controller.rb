@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-
+    @user.boards = get_user_boards
     respond_to do |format|
       if @user.save
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
@@ -66,5 +66,32 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:key, :token)
+    end
+
+    def get_user_boards
+      boards_response = HTTParty.get("https://api.trello.com/1/members/me/boards?key=#{@user.key}&token=#{@user.token}")
+      boards = JSON.parse(boards_response.body)
+      boards.map { |board|
+          # lists_response = HTTParty.get("https://api.trello.com/1/boards/#{board["id"]}/lists?key=#{@user.key}&token=#{@user.token}")
+          # lists = JSON.parse(lists_response.body)
+          # labels_response = HTTParty.get("https://api.trello.com/1/boards/#{board["id"]}/labels?key=#{@user.key}&token=#{@user.token}")
+          # labels = JSON.parse(labels_response.body)
+          Board.new({
+              name: board["name"],
+              id: board["id"],
+              # lists: lists.map { |list|
+              #   List.new({
+              #     name: list["name"],
+              #     id: list["id"],
+              #   })
+              # },
+              # labels: labels.map { |label|
+              #   Label.new({
+              #     name: label["name"],
+              #     id: label["id"],
+              #   })
+              # }
+          })
+      }
     end
 end
