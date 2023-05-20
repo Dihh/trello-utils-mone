@@ -68,7 +68,35 @@
     <li>
       <div class="collapsible-header">Labels</div>
       <div class="collapsible-body">
-        <span>Lorem ipsum dolor sit amet.</span>
+        <table>
+          <thead>
+            <tr>
+              <th>Id:</th>
+              <th>Name:</th>
+              <th>Board key</th>
+              <th>#</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @board.labels.each do |label| %>
+              <tr>
+                <td>
+                  <%= label.id %>
+                </td>
+                <td>
+                  <%= label.name %>
+                </td>
+                <td>
+                  <%= label.board_id %>
+                </td>
+                <td>
+                  <%= link_to "Show this label" , label %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
       </div>
     </li>
     <li>
