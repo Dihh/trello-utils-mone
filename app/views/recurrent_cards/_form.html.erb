@@ -20,6 +20,28 @@
     <%= form.label :board_id, style: "display: block" %>
     <%= form.text_field :board_id %>
   </div>
+  
+  <div class="row">
+    <div class="col s6">
+    <strong>Labels:</strong>
+    <div>
+      <% if recurrent_card.board %>
+        <% recurrent_card.board.labels.each do |label| %>
+          <p >
+            <label>
+              <%= check_box_tag "labels[]", label.id, recurrent_card.labelss.include?(label), {multiple: true } %>
+              <span><%= label.name %></span>
+            </label>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+    </div>
+    <div class="col s6">
+    <strong>Lists:</strong>
+    <div>LISTS</div>
+    </div>
+  </div>
 
   <div>
     <%= form.submit %>

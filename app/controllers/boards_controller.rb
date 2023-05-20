@@ -57,6 +57,23 @@ class BoardsController < ApplicationController
     end
   end
 
+  def execute_recurrent_cards
+    # @board.recurrent_cards.each {|card|
+    #   card.lists.each {|list|
+    #     list_id = list.list.id
+    #     body = {
+    #       name: card.name,
+    #       idLabels: card.labels.map { |label| label.label.id},
+    #     }
+    #     headers = {
+    #       "Content-Type": "application/json"
+    #     }
+    #     boards_response = HTTParty.post("https://api.trello.com/1/cards?key=#{@user.key}&token=#{@user.token}&idList=#{list_id}", body: body.to_json, headers: headers)
+    #   }
+    # }
+    # render json: @board.recurrent_cards
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_board

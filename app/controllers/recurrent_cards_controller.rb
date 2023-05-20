@@ -22,7 +22,7 @@ class RecurrentCardsController < ApplicationController
   # POST /recurrent_cards or /recurrent_cards.json
   def create
     @recurrent_card = RecurrentCard.new(recurrent_card_params)
-
+    set_recurrent_card_labels
     respond_to do |format|
       if @recurrent_card.save
         format.html { redirect_to recurrent_card_url(@recurrent_card), notice: "Recurrent card was successfully created." }
@@ -36,6 +36,7 @@ class RecurrentCardsController < ApplicationController
 
   # PATCH/PUT /recurrent_cards/1 or /recurrent_cards/1.json
   def update
+    set_recurrent_card_labels
     respond_to do |format|
       if @recurrent_card.update(recurrent_card_params)
         format.html { redirect_to recurrent_card_url(@recurrent_card), notice: "Recurrent card was successfully updated." }
@@ -66,5 +67,15 @@ class RecurrentCardsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def recurrent_card_params
       params.require(:recurrent_card).permit(:name, :board_id)
+    end
+
+    def set_recurrent_card_labels
+      labels = Label.where(id: params["labels"])
+      @recurrent_card.labels = labels.map{ |label| 
+        RecurrentCardLabel.new({
+          recurrent_card: @recurrent_card,
+          label: label
+        })
+      }
     end
 end
