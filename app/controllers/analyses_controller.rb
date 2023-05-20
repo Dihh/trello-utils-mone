@@ -22,7 +22,7 @@ class AnalysesController < ApplicationController
   # POST /analyses or /analyses.json
   def create
     @analysis = Analysis.new(analysis_params)
-
+    set_analysis_list
     respond_to do |format|
       if @analysis.save
         format.html { redirect_to analysis_url(@analysis), notice: "Analysis was successfully created." }
@@ -36,6 +36,7 @@ class AnalysesController < ApplicationController
 
   # PATCH/PUT /analyses/1 or /analyses/1.json
   def update
+    set_analysis_list
     respond_to do |format|
       if @analysis.update(analysis_params)
         format.html { redirect_to analysis_url(@analysis), notice: "Analysis was successfully updated." }
@@ -50,7 +51,6 @@ class AnalysesController < ApplicationController
   # DELETE /analyses/1 or /analyses/1.json
   def destroy
     @analysis.destroy
-
     respond_to do |format|
       format.html { redirect_to analyses_url, notice: "Analysis was successfully destroyed." }
       format.json { head :no_content }
@@ -65,6 +65,16 @@ class AnalysesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def analysis_params
-      params.require(:analysis).permit(:name, :board_id, :pre_planning, :pos_planning, :start_date, :end_date, :status)
+      params.require(:analysis).permit(:name, :board_id, :pre_planning, :pos_planning, :start_date, :end_date, :status, lists: [])
+    end
+
+    def set_analysis_list
+      lists = List.where(id: params["lists"])
+      @analysis.lists = lists.map{ |list| 
+        AnalysisList.new({
+          analysis: @analysis,
+          list: list
+        })
+      }
     end
 end

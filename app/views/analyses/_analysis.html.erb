@@ -41,6 +41,29 @@
       <%= analysis.status %>
     </div>
   </div>
+
+  <h4>Lists</h4>
+  <table>
+  <thead>
+    <tr>
+        <th>Id:</th>
+        <th>Name:</th>
+        <th>Board key</th>
+        <th>#</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @analysis.listss.each do |list| %>
+    <tr>
+      <td><%= list.id %></td>
+      <td><%= list.name %></td>
+      <td><%= list.board_id %></td>
+      <td><%= link_to "Show this list", list %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 </div>
 
   

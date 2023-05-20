@@ -46,6 +46,19 @@
     <%= form.text_field :status %>
   </div>
 
+  <br />
+  <div>
+  <%= form.label :lists, style: "display: block" %>
+  <% Analysis.first.board.lists.each do |list| %>
+    <p >
+      <label>
+        <%= check_box_tag "lists[]", list.id, analysis.listss.include?(list), {multiple: true } %>
+        <span><%= list.name %></span>
+      </label>
+    </p>
+  <% end %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>
