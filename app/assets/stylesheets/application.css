@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+html,
+body {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    line-height: 1.5;
+}
+
+body {
+    /* margin-top: -40px; */
+}
+
+.container-fluid {
+    padding-left: 2%;
+    padding-right: 2%;
+}
