@@ -72,19 +72,19 @@ class UsersController < ApplicationController
       boards_response = HTTParty.get("https://api.trello.com/1/members/me/boards?key=#{@user.key}&token=#{@user.token}")
       boards = JSON.parse(boards_response.body)
       boards.map { |board|
-          # lists_response = HTTParty.get("https://api.trello.com/1/boards/#{board["id"]}/lists?key=#{@user.key}&token=#{@user.token}")
-          # lists = JSON.parse(lists_response.body)
+          lists_response = HTTParty.get("https://api.trello.com/1/boards/#{board["id"]}/lists?key=#{@user.key}&token=#{@user.token}")
+          lists = JSON.parse(lists_response.body)
           # labels_response = HTTParty.get("https://api.trello.com/1/boards/#{board["id"]}/labels?key=#{@user.key}&token=#{@user.token}")
           # labels = JSON.parse(labels_response.body)
           Board.new({
               name: board["name"],
               id: board["id"],
-              # lists: lists.map { |list|
-              #   List.new({
-              #     name: list["name"],
-              #     id: list["id"],
-              #   })
-              # },
+              lists: lists.map { |list|
+                List.new({
+                  name: list["name"],
+                  id: list["id"],
+                })
+              },
               # labels: labels.map { |label|
               #   Label.new({
               #     name: label["name"],
