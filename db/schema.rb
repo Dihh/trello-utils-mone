@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_20_182215) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_20_190239) do
   create_table "analyses", force: :cascade do |t|
     t.string "name"
     t.string "board_id"
@@ -45,6 +45,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_182215) do
   end
 
   create_table "lists", id: :string, force: :cascade do |t|
+    t.string "name"
+    t.string "board_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "recurrent_cards", force: :cascade do |t|
     t.string "name"
     t.string "board_id"
     t.datetime "created_at", null: false

@@ -153,7 +153,32 @@
     <li>
       <div class="collapsible-header">Recurrent cards</div>
       <div class="collapsible-body">
-        <span>Lorem ipsum dolor sit amet.</span>
+        <%= link_to "New cecurrent card" , new_recurrent_card_path %>
+          <table>
+            <thead>
+              <tr>
+                <th>Name:</th>
+                <th>Board id</th>
+                <th>#</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @board.recurrent_cards.each do |recurrent_card| %>
+                <tr>
+                  <td>
+                    <%= recurrent_card.name %>
+                  </td>
+                  <td>
+                    <%= recurrent_card.board_id %>
+                  </td>
+                  <td>
+                    <%= link_to "Show this recurrent card" , recurrent_card %>
+                  </td>
+                </tr>
+                <% end %>
+            </tbody>
+          </table>
       </div>
     </li>
   </ul>

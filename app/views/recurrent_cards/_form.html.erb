@@ -1,0 +1,27 @@
+<%= form_with(model: recurrent_card) do |form| %>
+  <% if recurrent_card.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(recurrent_card.errors.count, "error") %> prohibited this recurrent_card from being saved:</h2>
+
+      <ul>
+        <% recurrent_card.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :board_id, style: "display: block" %>
+    <%= form.text_field :board_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

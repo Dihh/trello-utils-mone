@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+
+<div>
+  <%= link_to "Edit this recurrent card", edit_recurrent_card_path(@recurrent_card) %> |
+  <%= link_to "Back to board", @recurrent_card.board %>
+
+</div>
+<br />
+<%= render @recurrent_card %>
+<%= button_to "Destroy this recurrent card", @recurrent_card, method: :delete %>

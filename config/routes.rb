@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :recurrent_cards
   resources :labels
   resources :analyses
   resources :lists

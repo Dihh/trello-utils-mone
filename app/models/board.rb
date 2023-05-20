@@ -3,4 +3,5 @@ class Board < ApplicationRecord
     has_many :lists, :class_name => "List"
     has_many :labels, :class_name => "Label"
     has_many :analyses, :class_name => "Analysis"
+    has_many :recurrent_cards, :class_name => "RecurrentCard"
 end
