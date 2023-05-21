@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: %i[ show edit update destroy ]
+  before_action :set_board, only: %i[ show edit update destroy execute_recurrent_cards ]
 
   # GET /boards or /boards.json
   def index
@@ -58,20 +58,24 @@ class BoardsController < ApplicationController
   end
 
   def execute_recurrent_cards
-    # @board.recurrent_cards.each {|card|
-    #   card.lists.each {|list|
-    #     list_id = list.list.id
-    #     body = {
-    #       name: card.name,
-    #       idLabels: card.labels.map { |label| label.label.id},
-    #     }
-    #     headers = {
-    #       "Content-Type": "application/json"
-    #     }
-    #     boards_response = HTTParty.post("https://api.trello.com/1/cards?key=#{@user.key}&token=#{@user.token}&idList=#{list_id}", body: body.to_json, headers: headers)
-    #   }
-    # }
-    # render json: @board.recurrent_cards
+    user = @board.user
+    @board.recurrent_cards.each {|card|
+      card.lists.each {|list|
+        list_id = list.id
+        body = {
+          name: card.name,
+          idLabels: card.labels.map { |label| label.label.id},
+        }
+        headers = {
+          "Content-Type": "application/json"
+        }
+        boards_response = HTTParty.post("https://api.trello.com/1/cards?key=#{user.key}&token=#{user.token}&idList=#{list_id}", body: body.to_json, headers: headers)
+      }
+    }
+    respond_to do |format|
+      format.html { redirect_to @board, notice: "Board recurrent cards created." }
+      format.json { head :no_content }
+    end
   end
 
   private

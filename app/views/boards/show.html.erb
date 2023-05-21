@@ -3,8 +3,8 @@
 
 <div>
   <%= link_to "Edit this board", edit_board_path(@board) %> |
-  <%= link_to "Back to user", @board.user %>
-
+  <%= link_to "Back to user", @board.user %> | 
+  <%= link_to "Execute recurrent cards", execute_recurrent_cards_boards_path(@board) %>
 </div>
 <br />
 <%= render @board %>
