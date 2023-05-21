@@ -23,6 +23,7 @@ class RecurrentCardsController < ApplicationController
   def create
     @recurrent_card = RecurrentCard.new(recurrent_card_params)
     set_recurrent_card_labels
+    set_recurrent_card_lists
     respond_to do |format|
       if @recurrent_card.save
         format.html { redirect_to recurrent_card_url(@recurrent_card), notice: "Recurrent card was successfully created." }
@@ -37,6 +38,7 @@ class RecurrentCardsController < ApplicationController
   # PATCH/PUT /recurrent_cards/1 or /recurrent_cards/1.json
   def update
     set_recurrent_card_labels
+    set_recurrent_card_lists
     respond_to do |format|
       if @recurrent_card.update(recurrent_card_params)
         format.html { redirect_to recurrent_card_url(@recurrent_card), notice: "Recurrent card was successfully updated." }
@@ -77,5 +79,9 @@ class RecurrentCardsController < ApplicationController
           label: label
         })
       }
+    end
+
+    def set_recurrent_card_lists
+      @recurrent_card.lists = List.where(id: params["lists"])
     end
 end

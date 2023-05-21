@@ -23,23 +23,34 @@
   
   <div class="row">
     <div class="col s6">
-    <strong>Labels:</strong>
-    <div>
-      <% if recurrent_card.board %>
-        <% recurrent_card.board.labels.each do |label| %>
-          <p >
-            <label>
-              <%= check_box_tag "labels[]", label.id, recurrent_card.labelss.include?(label), {multiple: true } %>
-              <span><%= label.name %></span>
-            </label>
-          </p>
+      <strong>Labels:</strong>
+      <div>
+        <% if recurrent_card.board %>
+          <% recurrent_card.board.labels.each do |label| %>
+            <p >
+              <label>
+                <%= check_box_tag "labels[]", label.id, recurrent_card.labelss.include?(label), {multiple: true } %>
+                <span><%= label.name %></span>
+              </label>
+            </p>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
     </div>
     <div class="col s6">
-    <strong>Lists:</strong>
-    <div>LISTS</div>
+      <strong>Lists:</strong>
+      <div>
+        <% if recurrent_card.board %>
+          <% recurrent_card.board.lists.each do |list| %>
+            <p >
+              <label>
+                <%= check_box_tag "lists[]", list.id, recurrent_card.lists.include?(list), {multiple: true } %>
+                <span><%= list.name %></span>
+              </label>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 
