@@ -1,27 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Users</h1>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Users</h4>
+  </div>
+  <div class="card-body">
 
-<table>
-  <thead>
-    <tr>
-        <th>Key:</th>
-        <th>Token:</th>
-        <th>#</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= user.key %></td>
-      <td><%= user.token %></td>
-      <td><%= link_to "Show this user", user %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
-<%= link_to "New user", new_user_path %>
-<br />
-<%= link_to "Back to home", root_path %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class=" text-primary">
+          <th>Key:</th>
+          <th>Token:</th>
+          <th>#</th>
+        </thead>
+        <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.key %></td>
+          <td><%= user.token %></td>
+          <td><%= link_to "Show this user", user %></td>
+        </tr>
+      <% end %>
+      </tbody>
+      </table>
+    </div>
+    <%= link_to "New user", new_user_path %>
+    <br />
+    <%= link_to "Back to home", root_path %>
+  </div>
+</div>
