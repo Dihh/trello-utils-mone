@@ -1,14 +1,19 @@
-<div id="<%= dom_id list %>">
- <div class="row">
-      <div class="col s1"><strong>Id:</strong></div>
-      <div class="col s1"><%= list.id %></div>
+<div class="card" id="<%= dom_id list %>">
+  <div class="card-header">
+    <h4 class="card-title">List</h4>
   </div>
-  <div class="row">
-      <div class="col s1"><strong>Name:</strong></div>
-      <div class="col s1"><%= list.name %></div>
-  </div>
-  <div class="row">
-      <div class="col s1"><strong>Board Id:</strong></div>
-      <div class="col s1"><%= list.board_id %></div>
+  <div class="card-body">
+    <div class="row">
+        <div class="col s1"><strong>Id:</strong></div>
+        <div class="col s1"><%= list.id %></div>
+    </div>
+    <div class="row">
+        <div class="col s1"><strong>Name:</strong></div>
+        <div class="col s1"><%= list.name %></div>
+    </div>
+    <div class="row">
+        <div class="col s1"><strong>Board Id:</strong></div>
+        <div class="col s1"><%= list.board_id %></div>
+    </div>
   </div>
 </div>

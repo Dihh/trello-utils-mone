@@ -1,29 +1,30 @@
 <p style="color: green"><%= notice %></p>
+<%= link_to "New recurrent card", new_recurrent_card_path %> | <%= link_to "Back to home", root_path %>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Recurrent cards</h4>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+              <th>Name:</th>
+              <th>Board id</th>
+              <th>#</th>
+          </tr>
+        </thead>
 
-<h1>Recurrent cards</h1>
-
-<div id="recurrent_cards">
-  <table>
-    <thead>
-      <tr>
-          <th>Name:</th>
-          <th>Board id</th>
-          <th>#</th>
-      </tr>
-    </thead>
-
-    <tbody>
-    <% @recurrent_cards.each do |recurrent_card| %>
-      <tr>
-        <td><%= recurrent_card.name %></td>
-        <td><%= recurrent_card.board_id %></td>
-        <td><%= link_to "Show this recurrent card", recurrent_card %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+        <tbody>
+        <% @recurrent_cards.each do |recurrent_card| %>
+          <tr>
+            <td><%= recurrent_card.name %></td>
+            <td><%= recurrent_card.board_id %></td>
+            <td><%= link_to "Show this recurrent card", recurrent_card %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New recurrent card", new_recurrent_card_path %>
-<br />
-<%= link_to "Back to home", root_path %>

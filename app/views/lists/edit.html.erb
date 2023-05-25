@@ -1,10 +1,13 @@
-<h1>Editing list</h1>
-
-<%= render "form", list: @list %>
-
-<br>
-
 <div>
   <%= link_to "Show this list", @list %> |
-  <%= link_to "Back to lists", lists_path %>
+  <%= link_to "Back to board", @list.board %>
+</div>
+<br>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Editing list</h4>
+  </div>
+  <div class="card-body">
+    <%= render "form", list: @list %>
+  </div>
 </div>

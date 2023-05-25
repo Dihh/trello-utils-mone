@@ -1,33 +1,62 @@
-<div id="<%= dom_id user %>">
- <div class="row">
-      <div class="col s1"><strong>Key:</strong></div>
-      <div class="col s1"><%= user.key %></div>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">User</h4>
   </div>
-  <div class="row">
-      <div class="col s1"><strong>Token:</strong></div>
-      <div class="col s1"><%= user.token %></div>
+  <div class="card-body">
+
+    <div id="<%= dom_id user %>">
+      <div class="row">
+        <div class="col s1"><strong>Key:</strong></div>
+        <div class="col s1">
+          <%= user.key %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s1"><strong>Token:</strong></div>
+        <div class="col s1">
+          <%= user.token %>
+        </div>
+      </div>
+    </div>
   </div>
-  <br />
-  <h4>Boards</h4>
-  <table>
-    <thead>
-        <tr>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Boards</h4>
+  </div>
+  <div class="card-body">
+
+    <div id="<%= dom_id user %>" class="table-responsive">
+      <table class="table">
+        <thead class=" text-primary">
+          <tr>
             <th>Id:</th>
             <th>Name:</th>
             <th>User key</th>
             <th>#</th>
-        </tr>
-    </thead>
+          </tr>
+        </thead>
 
-    <tbody>
-    <% @user.boards.each do |board| %>
-        <tr>
-        <td><%= board.id %></td>
-        <td><%= board.name %></td>
-        <td><%= board.user_key %></td>
-        <td><%= link_to "Show this board", board %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
+        <tbody>
+          <% @user.boards.each do |board| %>
+            <tr>
+              <td>
+                <%= board.id %>
+              </td>
+              <td>
+                <%= board.name %>
+              </td>
+              <td>
+                <%= board.user_key %>
+              </td>
+              <td>
+                <%= link_to "Show this board" , board %>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

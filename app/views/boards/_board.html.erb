@@ -1,190 +1,200 @@
-<div id="<%= dom_id board %>">
-  <div class="row">
-    <div class="col s1"><strong>Id:</strong></div>
-    <div class="col s1">
-      <%= board.id %>
-    </div>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Board</h4>
   </div>
-  <div class="row">
-    <div class="col s1"><strong>Name:</strong></div>
-    <div class="col s1">
-      <%= board.name %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s1"><strong>User key:</strong></div>
-    <div class="col s1">
-      <%= board.user_key %>
-    </div>
-  </div>
-  <br />
-  <div class="row">
-    <div class="col s12 m6">
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively.</p>
+  <div class="card-body">
+    <div id="<%= dom_id board %>">
+      <div class="row">
+        <div class="col s1"><strong>Id:</strong></div>
+        <div class="col s1">
+          <%= board.id %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s1"><strong>Name:</strong></div>
+        <div class="col s1">
+          <%= board.name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s1"><strong>User key:</strong></div>
+        <div class="col s1">
+          <%= board.user_key %>
         </div>
       </div>
     </div>
   </div>
-  <br>
-  <ul class="collapsible">
-    <li>
-      <div class="collapsible-header">Lists</div>
-      <div class="collapsible-body">
-        <table>
-          <thead>
-            <tr>
-              <th>Id:</th>
-              <th>Name:</th>
-              <th>Board key</th>
-              <th>#</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @board.lists.each do |list| %>
-              <tr>
-                <td>
-                  <%= list.id %>
-                </td>
-                <td>
-                  <%= list.name %>
-                </td>
-                <td>
-                  <%= list.board_id %>
-                </td>
-                <td>
-                  <%= link_to "Show this list" , list %>
-                </td>
-              </tr>
-              <% end %>
-          </tbody>
-        </table>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header">Labels</div>
-      <div class="collapsible-body">
-        <table>
-          <thead>
-            <tr>
-              <th>Id:</th>
-              <th>Name:</th>
-              <th>Board key</th>
-              <th>#</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @board.labels.each do |label| %>
-              <tr>
-                <td>
-                  <%= label.id %>
-                </td>
-                <td>
-                  <%= label.name %>
-                </td>
-                <td>
-                  <%= label.board_id %>
-                </td>
-                <td>
-                  <%= link_to "Show this label" , label %>
-                </td>
-              </tr>
-              <% end %>
-          </tbody>
-        </table>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header">Analyses</div>
-      <div class="collapsible-body">
-        <%= link_to "New analysis" , new_analysis_path %>
-          <table>
-            <thead>
-              <tr>
-                <th>Name:</th>
-                <th>Board:</th>
-                <th>Pre planning:</th>
-                <th>Pos planning:</th>
-                <th>Start date:</th>
-                <th>end date:</th>
-                <th>Status:</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @board.analyses.each do |analysis| %>
-                <tr>
-                  <td>
-                    <%= analysis.name %>
-                  </td>
-                  <td>
-                    <%= analysis.board_id %>
-                  </td>
-                  <td>
-                    <%= analysis.pre_planning %>
-                  </td>
-                  <td>
-                    <%= analysis.pos_planning %>
-                  </td>
-                  <td>
-                    <%= analysis.start_date %>
-                  </td>
-                  <td>
-                    <%= analysis.end_date %>
-                  </td>
-                  <td>
-                    <%= analysis.status %>
-                  </td>
-                  <td>
-                    <%= link_to "Show this analysis" , analysis %>
-                  </td>
-                </tr>
-                <% end %>
-            </tbody>
-          </table>
-
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header">Recurrent cards</div>
-      <div class="collapsible-body">
-        <%= link_to "New cecurrent card" , new_recurrent_card_path %>
-          <table>
-            <thead>
-              <tr>
-                <th>Name:</th>
-                <th>Board id</th>
-                <th>#</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @board.recurrent_cards.each do |recurrent_card| %>
-                <tr>
-                  <td>
-                    <%= recurrent_card.name %>
-                  </td>
-                  <td>
-                    <%= recurrent_card.board_id %>
-                  </td>
-                  <td>
-                    <%= link_to "Show this recurrent card" , recurrent_card %>
-                  </td>
-                </tr>
-                <% end %>
-            </tbody>
-          </table>
-      </div>
-    </li>
-  </ul>
-
-  <br />
 </div>
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Lists</h4>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class=" text-primary">
+          <tr>
+            <th>Id:</th>
+            <th>Name:</th>
+            <th>Board key</th>
+            <th>#</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @board.lists.each do |list| %>
+            <tr>
+              <td>
+                <%= list.id %>
+              </td>
+              <td>
+                <%= list.name %>
+              </td>
+              <td>
+                <%= list.board_id %>
+              </td>
+              <td>
+                <%= link_to "Show this list" , list %>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Labels</h4>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class=" text-primary">
+          <tr>
+            <th>Id:</th>
+            <th>Name:</th>
+            <th>Board key</th>
+            <th>#</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @board.labels.each do |label| %>
+            <tr>
+              <td>
+                <%= label.id %>
+              </td>
+              <td>
+                <%= label.name %>
+              </td>
+              <td>
+                <%= label.board_id %>
+              </td>
+              <td>
+                <%= link_to "Show this label" , label %>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Analyses</h4>
+  </div>
+  <div class="card-body">
+    <%= link_to "New analysis" , new_analysis_path %>
+      <div class="table-responsive">
+        <table class="table">
+          <thead class=" text-primary">
+            <tr>
+              <th>Name:</th>
+              <th>Board:</th>
+              <th>Pre planning:</th>
+              <th>Pos planning:</th>
+              <th>Start date:</th>
+              <th>end date:</th>
+              <th>Status:</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @board.analyses.each do |analysis| %>
+              <tr>
+                <td>
+                  <%= analysis.name %>
+                </td>
+                <td>
+                  <%= analysis.board_id %>
+                </td>
+                <td>
+                  <%= analysis.pre_planning %>
+                </td>
+                <td>
+                  <%= analysis.pos_planning %>
+                </td>
+                <td>
+                  <%= analysis.start_date %>
+                </td>
+                <td>
+                  <%= analysis.end_date %>
+                </td>
+                <td>
+                  <%= analysis.status %>
+                </td>
+                <td>
+                  <%= link_to "Show this analysis" , analysis %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Recurrent Cards</h4>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <%= link_to "New cecurrent card" , new_recurrent_card_path %>
+        <table class="table">
+          <thead class=" text-primary">
+            <tr>
+              <th>Name:</th>
+              <th>Board id</th>
+              <th>#</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @board.recurrent_cards.each do |recurrent_card| %>
+              <tr>
+                <td>
+                  <%= recurrent_card.name %>
+                </td>
+                <td>
+                  <%= recurrent_card.board_id %>
+                </td>
+                <td>
+                  <%= link_to "Show this recurrent card" , recurrent_card %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
 <script>
   M.AutoInit();
 </script>

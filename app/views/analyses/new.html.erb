@@ -1,9 +1,12 @@
-<h1>New analysis</h1>
-
-<%= render "form", analysis: @analysis %>
-
-<br>
-
 <div>
   <%= link_to "Back to board", @analysis.board %>
+</div>
+<br>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">New analysis</h4>
+  </div>
+  <div class="card-body">
+    <%= render "form", analysis: @analysis %>
+  </div>
 </div>

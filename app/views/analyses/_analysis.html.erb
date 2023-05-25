@@ -1,69 +1,80 @@
-<div id="<%= dom_id analysis %>">
-  <div class="row">
-    <div class="col s2"><strong>Name:</strong></div>
-    <div class="col s2">
-      <%= analysis.name %>
+<div class="card" id="<%= dom_id analysis %>">
+  <div class="card-header">
+    <h4 class="card-title">Analysis</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col s2"><strong>Name:</strong></div>
+      <div class="col s2">
+        <%= analysis.name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s2"><strong>Board:</strong></div>
+      <div class="col s2">
+        <%= analysis.board_id %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s2"><strong>Pre planning:</strong></div>
+      <div class="col s2">
+        <%= analysis.pre_planning %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s2"><strong>Pos planning:</strong></div>
+      <div class="col s2">
+        <%= analysis.pos_planning %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s2"><strong>Start date:</strong></div>
+      <div class="col s2">
+        <%= analysis.start_date %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s2"><strong>end date:</strong></div>
+      <div class="col s2">
+        <%= analysis.end_date %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s2"><strong>Status:</strong></div>
+      <div class="col s2">
+        <%= analysis.status %>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col s2"><strong>Board:</strong></div>
-    <div class="col s2">
-      <%= analysis.board_id %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s2"><strong>Pre planning:</strong></div>
-    <div class="col s2">
-      <%= analysis.pre_planning %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s2"><strong>Pos planning:</strong></div>
-    <div class="col s2">
-      <%= analysis.pos_planning %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s2"><strong>Start date:</strong></div>
-    <div class="col s2">
-      <%= analysis.start_date %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s2"><strong>end date:</strong></div>
-    <div class="col s2">
-      <%= analysis.end_date %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s2"><strong>Status:</strong></div>
-    <div class="col s2">
-      <%= analysis.status %>
-    </div>
-  </div>
-
-  <h4>Lists</h4>
-  <table>
-  <thead>
-    <tr>
-        <th>Id:</th>
-        <th>Name:</th>
-        <th>Board key</th>
-        <th>#</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @analysis.listss.each do |list| %>
-    <tr>
-      <td><%= list.id %></td>
-      <td><%= list.name %></td>
-      <td><%= list.board_id %></td>
-      <td><%= link_to "Show this list", list %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
 </div>
 
-  
+<div class="card" id="<%= dom_id analysis %>">
+  <div class="card-header">
+    <h4 class="card-title">Lists</h4>
+  </div>
+  <div class="card-body">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+            <th>Id:</th>
+            <th>Name:</th>
+            <th>Board key</th>
+            <th>#</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% @analysis.listss.each do |list| %>
+        <tr>
+          <td><%= list.id %></td>
+          <td><%= list.name %></td>
+          <td><%= list.board_id %></td>
+          <td><%= link_to "Show this list", list %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>
