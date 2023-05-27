@@ -14,6 +14,7 @@
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <script src="/assets/plugins/chartjs.min.js"></script>
   </head>
 
   <body class="">
@@ -36,8 +37,8 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="active">
-          <%= link_to users_path do %>
-            <i class="nc-icon nc-single-02"></i>
+          <%= link_to root_path do %>
+            <i class="nc-icon nc-chart-bar-32"></i>
             <p>Dashboard</p>
           <% end %>
           </li>
@@ -118,7 +119,7 @@
           </div>
         </div>
       </div>
-      <%# <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
+      <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
         <div class="container-fluid">
           <div class="row">
             <nav class="footer-nav">
@@ -135,7 +136,7 @@
             </div>
           </div>
         </div>
-      </footer> %>
+      </footer>
     </div>
   </div>
 
@@ -144,7 +145,7 @@
   <script src="/assets/core/bootstrap.min.js"></script>
   <script src="/assets/plugins/perfect-scrollbar.jquery.min.js"></script>
   
-  <script src="/assets/plugins/chartjs.min.js"></script>
+  
   <script src="/assets/plugins/bootstrap-notify.js"></script>
   <script src="/assets/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
 </body>
