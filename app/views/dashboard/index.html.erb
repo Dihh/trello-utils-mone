@@ -5,6 +5,7 @@
 </div>
 
 <script>
+function main(){
   var ctx = document.getElementById('myChart');
   var colors = [
     "rgba(255, 99, 132, 0.2)",
@@ -73,4 +74,9 @@
       }
     }
   });
+}
+setTimeout(() => {
+  main()
+}, 300);
+  
 </script>

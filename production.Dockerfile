@@ -2,7 +2,7 @@ FROM ruby:3.2.2
 
 WORKDIR /app
 
-RUN gem install rails bundler rufo
+RUN gem install rails bundler
 
 COPY ./Gemfile /app/Gemfile
 COPY ./Gemfile.lock /app/Gemfile.lock
@@ -11,6 +11,6 @@ RUN bundle install
 
 RUN chmod +x /app
 
-EXPOSE 3000
+# CMD ["rails","server","-b","0.0.0.0","-e","production","-C", "--log-to-stdout"]
 
-# CMD ["rails","server","-b","0.0.0.0"]
+EXPOSE 3000

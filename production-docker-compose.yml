@@ -3,8 +3,11 @@ services:
   trello-utils-mono:
     build:
       context: .
+      dockerfile: production.Dockerfile
+    environment:
+      RAILS_ENV: production
     ports:
       - 3000:3000
     volumes:
       - ./:/app
-    command: rails server -b 0.0.0.0
+    command: bash production-start.sh
