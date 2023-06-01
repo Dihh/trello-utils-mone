@@ -58,8 +58,9 @@
       <thead>
         <tr>
             <th>Id:</th>
+            <th>Trello id:</th>
             <th>Name:</th>
-            <th>Board key</th>
+            <th>Board id</th>
             <th>#</th>
         </tr>
       </thead>
@@ -68,6 +69,7 @@
       <% @analysis.lists.each do |list| %>
         <tr>
           <td><%= list.id %></td>
+          <td><%= list.trello_id %></td>
           <td><%= list.name %></td>
           <td><%= list.board_id %></td>
           <td><%= link_to "Show this list", list %></td>

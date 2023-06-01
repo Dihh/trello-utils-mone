@@ -6,6 +6,7 @@
   <thead>
     <tr>
         <th>Id:</th>
+        <th>Trello id:</th>
         <th>Name:</th>
         <th>Board key</th>
         <th>#</th>
@@ -16,6 +17,7 @@
   <% @labels.each do |label| %>
     <tr>
       <td><%= label.id %></td>
+      <td><%= label.trello_id %></td>
       <td><%= label.name %></td>
       <td><%= label.board_id %></td>
       <td><%= link_to "Show this label", label %></td>

@@ -1,4 +1,4 @@
-class TablesTrelloIds < ActiveRecord::Migration[7.0]
+class UsersIds < ActiveRecord::Migration[7.0]
   def up
     add_column :users, :key_, :string
     User.all.each do |p|

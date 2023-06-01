@@ -78,17 +78,17 @@ class UsersController < ApplicationController
           labels = JSON.parse(labels_response.body)
           Board.new({
               name: board["name"],
-              id: board["id"],
+              trello_id: board["id"],
               lists: lists.map { |list|
                 List.new({
                   name: list["name"],
-                  id: list["id"],
+                  trello_id: list["id"],
                 })
               },
               labels: labels.map { |label|
                 Label.new({
                   name: label["name"],
-                  id: label["id"],
+                  trello_id: label["id"],
                 })
               }
           })

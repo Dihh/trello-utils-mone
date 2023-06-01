@@ -11,6 +11,10 @@
         </div>
       </div>
       <div class="row">
+        <div class="col s1"><strong>Trello id:</strong></div>
+        <div class="col s1"><%= board.trello_id %></div>
+    </div>
+      <div class="row">
         <div class="col s1"><strong>Name:</strong></div>
         <div class="col s1">
           <%= board.name %>
@@ -36,8 +40,9 @@
         <thead class=" text-primary">
           <tr>
             <th>Id:</th>
+            <th>Trello id:</th>
             <th>Name:</th>
-            <th>Board key</th>
+            <th>Board id</th>
             <th>#</th>
           </tr>
         </thead>
@@ -47,6 +52,9 @@
             <tr>
               <td>
                 <%= list.id %>
+              </td>
+              <td>
+                <%= list.trello_id %>
               </td>
               <td>
                 <%= list.name %>
@@ -75,8 +83,9 @@
         <thead class=" text-primary">
           <tr>
             <th>Id:</th>
+            <th>Trello id:</th>
             <th>Name:</th>
-            <th>Board key</th>
+            <th>Board id</th>
             <th>#</th>
           </tr>
         </thead>
@@ -86,6 +95,9 @@
             <tr>
               <td>
                 <%= label.id %>
+              </td>
+              <td>
+                <%= label.trello_id %>
               </td>
               <td>
                 <%= label.name %>
@@ -115,7 +127,7 @@
           <thead class=" text-primary">
             <tr>
               <th>Name:</th>
-              <th>Board:</th>
+              <th>Board id:</th>
               <th>Pre planning:</th>
               <th>Pos planning:</th>
               <th>Start date:</th>
