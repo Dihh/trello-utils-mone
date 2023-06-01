@@ -29,7 +29,7 @@
           <% recurrent_card.board.labels.each do |label| %>
             <p >
               <label>
-                <%= check_box_tag "labels[]", label.id, recurrent_card.labelss.include?(label), {multiple: true } %>
+                <%= check_box_tag "labels[]", label.id, recurrent_card.labels.include?(label), {multiple: true } %>
                 <span><%= label.name %></span>
               </label>
             </p>

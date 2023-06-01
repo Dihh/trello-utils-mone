@@ -72,13 +72,7 @@ class RecurrentCardsController < ApplicationController
     end
 
     def set_recurrent_card_labels
-      labels = Label.where(id: params["labels"])
-      @recurrent_card.labels = labels.map{ |label| 
-        RecurrentCardLabel.new({
-          recurrent_card: @recurrent_card,
-          label: label
-        })
-      }
+      @recurrent_card.labels = Label.where(id: params["labels"])
     end
 
     def set_recurrent_card_lists
