@@ -9,6 +9,7 @@
     <div class="table-responsive">
       <table class="table">
         <thead class=" text-primary">
+          <th>Id:</th>
           <th>Key:</th>
           <th>Token:</th>
           <th>#</th>
@@ -16,6 +17,7 @@
         <tbody>
       <% @users.each do |user| %>
         <tr>
+          <td><%= user.id %></td>
           <td><%= user.key %></td>
           <td><%= user.token %></td>
           <td><%= link_to "Show this user", user %></td>
