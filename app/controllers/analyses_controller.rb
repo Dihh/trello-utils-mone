@@ -70,11 +70,6 @@ class AnalysesController < ApplicationController
 
     def set_analysis_list
       lists = List.where(id: params["lists"])
-      @analysis.lists = lists.map{ |list| 
-        AnalysisList.new({
-          analysis: @analysis,
-          list: list
-        })
-      }
+      @analysis.lists = lists
     end
 end

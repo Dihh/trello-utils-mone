@@ -53,7 +53,7 @@
     <% analysis.board.lists.each do |list| %>
       <p >
         <label>
-          <%= check_box_tag "lists[]", list.id, analysis.listss.include?(list), {multiple: true } %>
+          <%= check_box_tag "lists[]", list.id, analysis.lists.include?(list), {multiple: true } %>
           <span><%= list.name %></span>
         </label>
       </p>
