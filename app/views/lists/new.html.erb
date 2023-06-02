@@ -1,9 +1,2 @@
-<h1>New list</h1>
-
-<%= render "form", list: @list %>
-
-<br>
-
-<div>
-  <%= link_to "Back to board", @list.board %>
-</div>
+<% form = render "form", list: @list %>
+<%= render "components/card_form",  element_path: @list, element:  @list, form: form, title: "New list" %>

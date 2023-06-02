@@ -1,0 +1,27 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead class="text-primary">
+            <tr>
+                <% headers.each do |header| %>
+                    <th> <%= header %>:</th>
+                <% end %>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% elements.each do |element| %>
+            <tr>
+                <% headers.each do |header| %>
+                    <td> 
+                        <% if header=="name" || header=="key" %>
+                            <%= link_to element[header], element%>
+                        <% else %>
+                            <%= element[header] %>
+                        <% end %>
+                    </td>
+                <% end %>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>

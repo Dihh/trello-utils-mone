@@ -1,31 +1,5 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Labels</h1>
-
-<table>
-  <thead>
-    <tr>
-        <th>Id:</th>
-        <th>Trello id:</th>
-        <th>Name:</th>
-        <th>Board key</th>
-        <th>#</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @labels.each do |label| %>
-    <tr>
-      <td><%= label.id %></td>
-      <td><%= label.trello_id %></td>
-      <td><%= label.name %></td>
-      <td><%= label.board_id %></td>
-      <td><%= link_to "Show this label", label %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
 <%= link_to "New label", new_label_path %>
-<br />
-<%= link_to "Back to home", root_path %>
+<br /><br />
+<% table = render "components/table",  elements: @labels, headers: ["name", "trello_id", "board_id"]  %>
+<%= render "components/card_table",  table: table, title: "Labels"  %>

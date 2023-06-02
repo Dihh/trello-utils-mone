@@ -1,11 +1,2 @@
-<div>
-  <%= link_to "Back to user", @board.user %>
-</div>
-<div class="card">
-  <div class="card-header">
-    <h4 class="card-title">New board</h4>
-  </div>
-  <div class="card-body">
-    <%= render "form", board: @board %>
-  </div>
-</div>
+<% form = render "form", board: @board %>
+<%= render "components/card_form",  element_path: @board, element:  @board, form: form, title: "New board" %>

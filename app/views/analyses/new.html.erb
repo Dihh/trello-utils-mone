@@ -1,12 +1,2 @@
-<div>
-  <%= link_to "Back to board", @analysis.board %>
-</div>
-<br>
-<div class="card">
-  <div class="card-header">
-    <h4 class="card-title">New analysis</h4>
-  </div>
-  <div class="card-body">
-    <%= render "form", analysis: @analysis %>
-  </div>
-</div>
+<% form = render "form", analysis: @analysis %>
+<%= render "components/card_form",  element_path: @analysis, element:  @analysis, form: form, title: "New analysis" %>

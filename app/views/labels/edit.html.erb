@@ -1,13 +1,2 @@
-<div>
-  <%= link_to "Show this label", @label %> |
-  <%= link_to "Back to board", @label.board %>
-</div>
-<br>
-<div class="card">
-  <div class="card-header">
-    <h4 class="card-title">Editing label</h4>
-  </div>
-  <div class="card-body">
-    <%= render "form", label: @label %>
-  </div>
-</div>
+<% form = render "form", label: @label %>
+<%= render "components/card_form",  element_path: @label, element:  @label, form: form, title: "Editing label" %>
