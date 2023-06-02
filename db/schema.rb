@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_214648) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_001118) do
   create_table "analyses", force: :cascade do |t|
     t.string "name"
     t.string "board_id"
@@ -32,10 +32,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_214648) do
 
   create_table "boards", force: :cascade do |t|
     t.string "name"
-    t.string "user_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "trello_id"
+    t.integer "user_id"
   end
 
   create_table "labels", force: :cascade do |t|
@@ -82,4 +82,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_214648) do
     t.string "key"
   end
 
+  add_foreign_key "boards", "users"
 end

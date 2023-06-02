@@ -16,7 +16,7 @@ class BoardsTest < ApplicationSystemTestCase
 
     fill_in "Id", with: @board.id
     fill_in "Name", with: @board.name
-    fill_in "User key", with: @board.user_key
+    fill_in "User id", with: @board.user_id
     click_on "Create Board"
 
     assert_text "Board was successfully created"
@@ -29,7 +29,7 @@ class BoardsTest < ApplicationSystemTestCase
 
     fill_in "Id", with: @board.id
     fill_in "Name", with: @board.name
-    fill_in "User key", with: @board.user_key
+    fill_in "User id", with: @board.user_id
     click_on "Update Board"
 
     assert_text "Board was successfully updated"
