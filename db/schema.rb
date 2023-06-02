@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_02_001118) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_005924) do
   create_table "analyses", force: :cascade do |t|
     t.string "name"
     t.string "board_id"
@@ -82,5 +82,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_001118) do
     t.string "key"
   end
 
+  add_foreign_key "analyses", "boards"
+  add_foreign_key "analyses_lists", "analyses"
+  add_foreign_key "analyses_lists", "lists"
   add_foreign_key "boards", "users"
+  add_foreign_key "labels", "boards"
+  add_foreign_key "labels_recurrent_cards", "labels"
+  add_foreign_key "labels_recurrent_cards", "recurrent_cards"
+  add_foreign_key "lists", "boards"
+  add_foreign_key "lists_recurrent_cards", "lists"
+  add_foreign_key "lists_recurrent_cards", "recurrent_cards"
+  add_foreign_key "recurrent_cards", "boards"
 end
