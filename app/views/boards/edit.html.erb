@@ -1,2 +1,6 @@
+<div>
+  <%= link_to "Back to board", @board %>
+</div>
+<br />
 <% form = render "form", board: @board %>
-<%= render "components/card_form",  element_path: @board, element:  @board, form: form, title: "Editing board" %>
+<%= render "components/card", content: form, title: "Editing board" %>

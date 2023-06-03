@@ -1,0 +1,19 @@
+<div>
+  <%= form.label field, style: "display: block" %>
+    <% list.each do |item| %>
+    <p>
+      <label>
+        <%= check_box_tag "#{field}[]", item[list_item_value], element_list.include?(item), {multiple: true } %>
+        <span><%= item[list_item_text] %></span>
+      </label>
+    </p>
+  <% end %>
+</div>
+
+<!--
+  field = lists
+  list = analysis.board.lists
+  element_list = element.lists
+  list_item_value = id
+  list_item_text = name
+-->

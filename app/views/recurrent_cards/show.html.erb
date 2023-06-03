@@ -3,5 +3,13 @@
   <%= link_to "Edit this recurrent card", edit_recurrent_card_path(@recurrent_card) %> | <%= link_to "Back to Recurrent cards", recurrent_cards_path %>
 </div>
 <br />
-<%= render @recurrent_card %>
+<% recurrent_card_content = render @recurrent_card %>
+<%= render "components/card",  content: recurrent_card_content, title: "Recurrent card"%>
+
+<% lists_table = render "components/table",  elements: @recurrent_card.labels, headers: ["name", "trello_id", "board_id"]  %>
+<%= render "components/card",  content: lists_table, title: "Labels"  %>
+
+<% lists_table = render "components/table",  elements: @recurrent_card.lists, headers: ["name", "trello_id", "board_id"]  %>
+<%= render "components/card",  content: lists_table, title: "Lists"  %>
+
 <%= button_to "Destroy this recurrent card", @recurrent_card, method: :delete %>

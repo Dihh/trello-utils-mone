@@ -3,5 +3,5 @@
   <%= link_to "Back to board", @label.board %>
 </div>
 <br />
-<%= render @label %>
-<%= button_to "Destroy this label", @label, method: :delete %>
+<% label_content = render @label %>
+<%= render "components/card",  content: label_content, title: "Label"%>

@@ -2,4 +2,4 @@
 <%= link_to "New user", new_user_path %>
 <br /><br />
 <% table = render "components/table",  elements: @users, headers: ["key", "token"]  %>
-<%= render "components/card_table",  table: table, title: "Users"  %>
+<%= render "components/card", title: "Users", content: table %>

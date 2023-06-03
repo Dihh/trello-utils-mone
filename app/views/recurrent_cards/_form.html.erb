@@ -1,60 +1,21 @@
-<%= form_with(model: recurrent_card) do |form| %>
-  <% if recurrent_card.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(recurrent_card.errors.count, "error") %> prohibited this recurrent_card from being saved:</h2>
-
-      <ul>
-        <% recurrent_card.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<% form_content = form_with(model: recurrent_card) do |form| %>
+  <%= render "components/form-components/input_text",  form: form, field: "name"%>
+  <%= render "components/form-components/input_text",  form: form, field: "board_id"%>
+  <% if recurrent_card.board %>
+    <div class="row">
+      <div class="col s6">
+        <%= render "components/form-components/check_box_list",  form: form, field: "labels", 
+          element_list: recurrent_card.labels, list: recurrent_card.board.labels, list_item_value: "id", list_item_text: "name"
+        %>
+      </div>
+      <div class="col s6">
+        <%= render "components/form-components/check_box_list",  form: form, field: "lists", 
+          element_list: recurrent_card.lists, list: recurrent_card.board.lists, list_item_value: "id", list_item_text: "name"
+        %>
+      </div>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :board_id, style: "display: block" %>
-    <%= form.text_field :board_id %>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col s6">
-      <strong>Labels:</strong>
-      <div>
-        <% if recurrent_card.board %>
-          <% recurrent_card.board.labels.each do |label| %>
-            <p >
-              <label>
-                <%= check_box_tag "labels[]", label.id, recurrent_card.labels.include?(label), {multiple: true } %>
-                <span><%= label.name %></span>
-              </label>
-            </p>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col s6">
-      <strong>Lists:</strong>
-      <div>
-        <% if recurrent_card.board %>
-          <% recurrent_card.board.lists.each do |list| %>
-            <p >
-              <label>
-                <%= check_box_tag "lists[]", list.id, recurrent_card.lists.include?(list), {multiple: true } %>
-                <span><%= list.name %></span>
-              </label>
-            </p>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= render "components/form-components/submit",  form: form%>
 <% end %>
+
+<%= render "components/form",  form_content: form_content, element: recurrent_card%>

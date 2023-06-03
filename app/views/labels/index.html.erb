@@ -2,4 +2,4 @@
 <%= link_to "New label", new_label_path %>
 <br /><br />
 <% table = render "components/table",  elements: @labels, headers: ["name", "trello_id", "board_id"]  %>
-<%= render "components/card_table",  table: table, title: "Labels"  %>
+<%= render "components/card", title: "Labels", content: table %>

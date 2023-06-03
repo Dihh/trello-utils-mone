@@ -3,6 +3,20 @@
   <%= link_to "Back to boards", boards_path %> | <%= link_to "Execute recurrent cards", execute_recurrent_cards_boards_path(@board) %>
 </div>
 <br />
-<%= render @board %>
-<%= button_to "Destroy this board", @board, method: :delete %>
+<% board_content = render @board %>
+<%= render "components/card",  content: board_content, title: "Board"%>
+
+<% lists_table = render "components/table",  elements: @board.lists, headers: ["name", "trello_id", "board_id"]  %>
+<%= render "components/card",  content: lists_table, title: "Lists"  %>
+
+<% labels_table = render "components/table",  elements: @board.labels, headers: ["name", "trello_id", "board_id"]  %>
+<%= render "components/card",  content: labels_table, title: "Labels"  %>
+
+<%= link_to "New analysis" , new_analysis_path %>
+<% analyses_table = render "components/table",  elements: @board.analyses, headers: ["name", "board_id", "pre_planning", "pos_planning", "start_date", "end_date", "status"]  %>
+<%= render "components/card",  content: analyses_table, title: "Analyses"  %>
+
+<%= link_to "New cecurrent card" , new_recurrent_card_path %>
+<% recurrent_cards_table = render "components/table",  elements: @board.recurrent_cards, headers: ["name", "board_id"]  %>
+<%= render "components/card",  content: recurrent_cards_table, title: "Recurrent cards"  %>
 

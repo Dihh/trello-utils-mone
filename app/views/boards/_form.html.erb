@@ -1,32 +1,8 @@
-<%= form_with(model: board) do |form| %>
-  <% if board.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
-
-      <ul>
-        <% board.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :id, style: "display: block" %>
-    <%= form.text_field :id %>
-  </div>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+<% form_content = form_with(model: board) do |form| %>
+  <%= render "components/form-components/input_text",  form: form, field: "trello_id"%>
+  <%= render "components/form-components/input_text",  form: form, field: "name"%>
+  <%= render "components/form-components/input_text",  form: form, field: "user_id"%>
+  <%= render "components/form-components/submit",  form: form%>
 <% end %>
+
+<%= render "components/form",  form_content: form_content, element: board%>

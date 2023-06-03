@@ -1,2 +1,6 @@
+<div>
+  <%= link_to "Back to users", users_path %>
+</div>
+<br />
 <% form = render "form", user: @user %>
-<%= render "components/card_form",  element_path: users_path, element:  @user, form: form, title: "New User" %>
+<%= render "components/card", title: "New User", content: form %>

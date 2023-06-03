@@ -1,2 +1,6 @@
+<div>
+  <%= link_to "Back to recurrent cards", recurrent_cards_path %>
+</div>
+<br />
 <% form = render "form", recurrent_card: @recurrent_card %>
-<%= render "components/card_form",  element_path: recurrent_cards_path, element:  @recurrent_card, form: form, title: "New recurrent card" %>
+<%= render "components/card", title: "New recurrent card", content: form %>

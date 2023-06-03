@@ -3,6 +3,7 @@
   <%= link_to "Edit this user", edit_user_path(@user) %> | <%= link_to "Back to users", users_path %>
 </div>
 <br />
-<%= render @user %>
+<% user_content = render @user %>
+<%= render "components/card",  content: user_content, title: "User"%>
 <%= button_to "Destroy this user", @user, method: :delete %>
 

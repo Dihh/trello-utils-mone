@@ -1,3 +1,3 @@
 <p style="color: green"><%= notice %></p>
-<% table = render "components/table",  elements: @boards, headers: ["name", "trello_id", "user_id"]  %>
-<%= render "components/card_table",  table: table, title: "Boards"  %>
+<% table = render "components/table",  elements: @boards, headers: ["name", "trello_id"]  %>
+<%= render "components/card", title: "Boards", content: table %>

@@ -1,5 +1,2 @@
-<%= render "components/card_componente",  element: analysis, title: "Analysis", fields: [
+<%= render "components/element",  element: analysis, fields: [
   "id", "name", "board_id", "pre_planning", "pos_planning", "start_date", "end_date", "status"]  %>
-
-<% lists_table = render "components/table",  elements: @analysis.lists, headers: ["name", "trello_id", "board_id"]  %>
-<%= render "components/card_table",  table: lists_table, title: "Lists"  %>

@@ -1,2 +1,6 @@
+<div>
+  <%= link_to "Back to analysis", @analysis %>
+</div>
+<br />
 <% form = render "form", analysis: @analysis %>
-<%= render "components/card_form",  element_path: @analysis, element:  @analysis, form: form, title: "Editing analysis" %>
+<%= render "components/card", content: form, title: "Editing analysis" %>

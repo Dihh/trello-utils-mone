@@ -35,25 +35,25 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active">
+          <li class="<%= controller_name == "dashboard" ? "active" : "" %>">
           <%= link_to root_path do %>
             <i class="nc-icon nc-chart-bar-32"></i>
             <p>Dashboard</p>
           <% end %>
           </li>
-          <li>
+          <li class="<%= controller_name == "boards" ? "active" : "" %>">
           <%= link_to boards_path do %>
             <i class="nc-icon nc-credit-card"></i>
             <p>Boards</p>
           <% end %>
           </li>
-          <li>
+          <li class="<%= controller_name == "analyses" ? "active" : "" %>">
           <%= link_to analyses_path do %>
             <i class="nc-icon nc-bullet-list-67"></i>
             <p>Analisys</p>
           <% end %>
           </li>
-          <li>
+          <li class="<%= controller_name == "recurrent_cards" ? "active" : "" %>">
           <%= link_to recurrent_cards_path do %>
             <i class="nc-icon nc-single-copy-04"></i>
             <p>Recurrent cards</p>

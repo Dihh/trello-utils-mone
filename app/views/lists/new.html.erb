@@ -1,2 +1,6 @@
+<div>
+  <%= link_to "Back to lists", lists_path %>
+</div>
+<br />
 <% form = render "form", list: @list %>
-<%= render "components/card_form",  element_path: @list, element:  @list, form: form, title: "New list" %>
+<%= render "components/card", title: "New list", content: form %>

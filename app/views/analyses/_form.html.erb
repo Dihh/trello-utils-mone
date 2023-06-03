@@ -1,67 +1,19 @@
-<%= form_with(model: analysis) do |form| %>
-  <% if analysis.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(analysis.errors.count, "error") %> prohibited this analysis from being saved:</h2>
-
-      <ul>
-        <% analysis.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :board_id, style: "display: block" %>
-    <%= form.text_field :board_id %>
-  </div>
-
-  <div>
-    <%= form.label :pre_planning, style: "display: block" %>
-    <%= form.text_area :pre_planning %>
-  </div>
-
-  <div>
-    <%= form.label :pos_planning, style: "display: block" %>
-    <%= form.text_area :pos_planning %>
-  </div>
-
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div>
-
-  <br />
-  <div>
-  <%= form.label :lists, style: "display: block" %>
+<% form_content = form_with(model: analysis) do |form| %>
+  <%= render "components/form-components/input_text",  form: form, field: "name"%>
+  <%= render "components/form-components/input_text",  form: form, field: "board_id"%>
+  <%= render "components/form-components/text_area",  form: form, field: "pre_planning"%>
+  <%= render "components/form-components/text_area",  form: form, field: "pos_planning"%>
+  <%= render "components/form-components/input_date",  form: form, field: "start_date"%>
+  <%= render "components/form-components/input_date",  form: form, field: "end_date"%>
+  <%= render "components/form-components/input_text",  form: form, field: "status"%>
   <% if analysis.board %>
-    <% analysis.board.lists.each do |list| %>
-      <p >
-        <label>
-          <%= check_box_tag "lists[]", list.id, analysis.lists.include?(list), {multiple: true } %>
-          <span><%= list.name %></span>
-        </label>
-      </p>
-    <% end %>
+    <%= render "components/form-components/check_box_list",  form: form, field: "lists", element_list: analysis.lists,
+      list: analysis.board.lists, list_item_value: "id", list_item_text: "name"
+    %>
   <% end %>
-  </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= render "components/form-components/submit",  form: form%>
 <% end %>
+
+
+<%= render "components/form",  form_content: form_content, element: analysis%>

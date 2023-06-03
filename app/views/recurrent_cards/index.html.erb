@@ -2,4 +2,4 @@
 <%= link_to "New recurrent card", new_recurrent_card_path %>
 <br /><br />
 <% table = render "components/table",  elements: @recurrent_cards, headers: ["name", "board_id"]  %>
-<%= render "components/card_table",  table: table, title: "Recurrent cards"  %>
+<%= render "components/card", title: "Recurrent cards", content: table %>

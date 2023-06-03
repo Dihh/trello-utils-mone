@@ -3,6 +3,8 @@
     <h4 class="card-title"><%= title %></h4>
   </div>
   <div class="card-body">
-      <%= table %>
+    <% if content %> 
+      <%= content %>    
+    <% end %>
   </div>
 </div>

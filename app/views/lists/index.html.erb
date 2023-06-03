@@ -2,4 +2,4 @@
 <%= link_to "New list", new_list_path %>
 <br /><br />
 <% table = render "components/table",  elements: @lists, headers: ["name", "trello_id", "board_id"]  %>
-<%= render "components/card_table",  table: table, title: "Lists"  %>
+<%= render "components/card", title: "Lists", content: table %>

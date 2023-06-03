@@ -3,4 +3,5 @@
   <%= link_to "Back to board", @list.board %>
 </div>
 <br />
-<%= render @list %>
+<% list_content = render @list %>
+<%= render "components/card",  content: list_content, title: "List"%>

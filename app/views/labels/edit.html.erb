@@ -1,2 +1,6 @@
+<div>
+  <%= link_to "Back to label", @label %>
+</div>
+<br />
 <% form = render "form", label: @label %>
-<%= render "components/card_form",  element_path: @label, element:  @label, form: form, title: "Editing label" %>
+<%= render "components/card", content: form, title: "Editing label" %>

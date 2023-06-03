@@ -1,0 +1,11 @@
+<% if element.errors.any? %>
+  <div style="color: red">
+    <h2><%= pluralize(element.errors.count, "error") %> prohibited this <%= element.class.to_s %> from being saved:</h2>
+    <ul>
+      <% element.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_content %>

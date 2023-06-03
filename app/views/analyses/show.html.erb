@@ -4,5 +4,10 @@
   <%= link_to "Back to analyses", analyses_path %>
 </div>
 <br />
-<%= render @analysis %>
+<% analysis_content = render @analysis %>
+<%= render "components/card",  content: analysis_content, title: "Analysis"%>
+
+<% lists_table = render "components/table",  elements: @analysis.lists, headers: ["name", "trello_id", "board_id"]  %>
+<%= render "components/card",  content: lists_table, title: "Lists"  %>
+
 <%= button_to "Destroy this analysis", @analysis, method: :delete %>

@@ -1,2 +1,6 @@
+<div>
+  <%= link_to "Back to labels", labels_path %>
+</div>
+<br />
 <% form = render "form", label: @label %>
-<%= render "components/card_form",  element_path: @label, element:  @label, form: form, title: "New label" %>
+<%= render "components/card", title: "New label", content: form %>
