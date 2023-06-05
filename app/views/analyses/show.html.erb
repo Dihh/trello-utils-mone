@@ -10,4 +10,7 @@
 <% lists_table = render "components/table",  elements: @analysis.lists, headers: ["name", "trello_id", "board_id"]  %>
 <%= render "components/card",  content: lists_table, title: "Lists"  %>
 
+<% analysis_dates_table = render "components/table",  elements: @analysis.analysis_dates, headers: ["date"]  %>
+<%= render "components/card",  content: analysis_dates_table, title: "Dates"  %>
+
 <%= button_to "Destroy this analysis", @analysis, method: :delete %>

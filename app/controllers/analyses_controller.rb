@@ -23,6 +23,7 @@ class AnalysesController < ApplicationController
   def create
     @analysis = Analysis.new(analysis_params)
     set_analysis_list
+    set_analysis_dates
     respond_to do |format|
       if @analysis.save
         format.html { redirect_to analysis_url(@analysis), notice: "Analysis was successfully created." }
@@ -36,7 +37,7 @@ class AnalysesController < ApplicationController
 
   # PATCH/PUT /analyses/1 or /analyses/1.json
   def update
-    set_analysis_list
+    update_analysis_dates(analysis_params["start_date"], analysis_params["end_date"])
     respond_to do |format|
       if @analysis.update(analysis_params)
         format.html { redirect_to analysis_url(@analysis), notice: "Analysis was successfully updated." }
@@ -71,5 +72,37 @@ class AnalysesController < ApplicationController
     def set_analysis_list
       lists = List.where(id: params["lists"])
       @analysis.lists = lists
+    end
+
+    def  set_analysis_dates
+      dates = (@analysis.start_date...(@analysis.end_date + 1.day)).to_a.map { |date|
+        AnalysisDate.new({date: date})
+      }
+      @analysis.analysis_dates = dates
+    end
+
+    def  update_analysis_dates(start_date, end_date)
+      start_date = start_date.to_date
+      end_date = end_date.to_date
+      dates = (start_date...(end_date + 1.day)).to_a
+      analysis_dates = @analysis.analysis_dates.map { |analysis_date|
+        analysis_date.date
+      }
+      to_remove = analysis_dates.reject { |analysis_date|
+        dates.include? analysis_date
+      }
+      to_remove_dates = AnalysisDate.where({analysis_id: @analysis.id, date: to_remove})
+      to_create = dates.reject { |analysis_date|
+        analysis_dates.include? analysis_date
+      }
+      to_create_dates = to_create.map { |date|
+        analysis_date = AnalysisDate.new({date: date})
+        analysis_date.analysis = @analysis
+        analysis_date
+      }
+      AnalysisDate.transaction do
+        to_remove_dates.destroy_all
+        to_create_dates.each { |date| date.save }
+      end
     end
 end
