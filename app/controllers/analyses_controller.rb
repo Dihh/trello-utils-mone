@@ -37,6 +37,7 @@ class AnalysesController < ApplicationController
 
   # PATCH/PUT /analyses/1 or /analyses/1.json
   def update
+    set_analysis_list
     update_analysis_dates(analysis_params["start_date"], analysis_params["end_date"])
     respond_to do |format|
       if @analysis.update(analysis_params)
