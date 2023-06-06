@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_171407) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_05_205159) do
   create_table "analyses", force: :cascade do |t|
     t.string "name"
     t.string "board_id"
@@ -44,6 +44,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_171407) do
     t.datetime "updated_at", null: false
     t.string "trello_id"
     t.integer "user_id"
+  end
+
+  create_table "date_values", force: :cascade do |t|
+    t.integer "analysis_date_id", null: false
+    t.integer "list_id", null: false
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["analysis_date_id"], name: "index_date_values_on_analysis_date_id"
+    t.index ["list_id"], name: "index_date_values_on_list_id"
   end
 
   create_table "labels", force: :cascade do |t|
@@ -95,6 +105,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_171407) do
   add_foreign_key "analyses_lists", "lists"
   add_foreign_key "analysis_dates", "analyses"
   add_foreign_key "boards", "users"
+  add_foreign_key "date_values", "analysis_dates"
+  add_foreign_key "date_values", "lists"
   add_foreign_key "labels", "boards"
   add_foreign_key "labels_recurrent_cards", "labels"
   add_foreign_key "labels_recurrent_cards", "recurrent_cards"

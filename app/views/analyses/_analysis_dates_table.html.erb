@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead class="text-primary">
+            <tr>
+                <th>Date</th>
+                <% analysis.lists.each do |list| %>
+                    <th> <%= list.name %>:</th>
+                <% end %>
+            </tr>
+        </thead>
+        <tbody>
+        <% analysis.analysis_dates.each do |analysis_date| %>
+            <tr>
+              <td><%= analysis_date.date %></td>
+              <% analysis.lists.each do |list| %>
+                  <td><%= get_analysis_date_value(analysis_date, list) %></td>
+              <% end %>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>

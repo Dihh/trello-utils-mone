@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AnalysisDateTest < ActiveSupport::TestCase
+class DateValueTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

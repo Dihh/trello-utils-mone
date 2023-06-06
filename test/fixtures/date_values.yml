@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  date: 2023-06-05
-  analysis: one
+  analysis_date: one
+  list: one
+  value: 1
 
 two:
-  date: 2023-06-05
-  analysis: two
+  analysis_date: two
+  list: two
+  value: 1
