@@ -1,0 +1,30 @@
+<% analysis =  @analysis %>
+<form method="POST" action="<%= update_date_values_analyses_path %>">
+  <div class="table-responsive">
+      <table class="table">
+          <thead class="text-primary">
+              <tr>
+                  <th>Date</th>
+                  <% @analysis.lists.each do |list| %>
+                      <th> <%= list.name %>:</th>
+                  <% end %>
+              </tr>
+          </thead>
+          <tbody>
+          <% @analysis.analysis_dates.each do |analysis_date| %>
+              <tr>
+                <td><%= analysis_date.date %></td>
+                <% @analysis.lists.each do |list| %>
+                    <td>
+                      <input type="hidden" name="<%= "analysis_dates[]" %>" value="<%= analysis_date.id %>" />
+                      <input type="hidden" name="<%= "lists[]" %>" value="<%= list.id %>" />
+                      <input type="number" name="<%= "values[]" %>" value="<%= get_analysis_date_value(analysis_date, list) %>" class="date-value-input-number" />
+                    </td>
+                <% end %>
+              </tr>
+          <% end %>
+          </tbody>
+      </table>
+  </div>
+  <input type="submit">
+</form>

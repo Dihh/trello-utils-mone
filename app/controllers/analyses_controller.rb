@@ -1,5 +1,5 @@
 class AnalysesController < ApplicationController
-  before_action :set_analysis, only: %i[ show edit update destroy ]
+  before_action :set_analysis, only: %i[ show edit update destroy edit_date_values update_date_values ]
 
   # GET /analyses or /analyses.json
   def index
@@ -17,6 +17,10 @@ class AnalysesController < ApplicationController
 
   # GET /analyses/1/edit
   def edit
+  end
+
+  # GET /analyses/1/edit_date_values
+  def edit_date_values
   end
 
   # POST /analyses or /analyses.json
@@ -47,6 +51,31 @@ class AnalysesController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @analysis.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # PATCH/PUT /analyses/1/edit_date_values or /analyses/1/edit_date_values.json
+  def update_date_values
+    values = params[:values]
+    lists = params[:lists]
+    analysis_dates = params[:analysis_dates]
+    dateValues = values.each_with_index.map { |value, index| 
+      dateValue = DateValue.find_by({list_id: lists[index], analysis_date_id: analysis_dates[index]})
+      if dateValue
+        dateValue.value = value
+      else
+        dateValue = DateValue.new({list_id: lists[index], analysis_date_id: analysis_dates[index], value: value})
+      end
+      dateValue
+    }
+
+    AnalysisDate.transaction do
+      dateValues.each { |dateValue| dateValue.save }
+    end
+
+    respond_to do |format|
+      format.html { redirect_to analysis_url(@analysis), notice: "Analysis was successfully updated." }
+      format.json { render :show, status: :ok, location: @analysis }
     end
   end
 

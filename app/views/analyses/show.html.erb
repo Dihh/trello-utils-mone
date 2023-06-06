@@ -9,7 +9,9 @@
 
 <% lists_table = render "components/table",  elements: @analysis.lists, headers: ["name", "trello_id", "board_id"]  %>
 <%= render "components/card",  content: lists_table, title: "Lists"  %>
-
+<br />
+<%= link_to "Edit this date values", edit_date_values_analyses_path(@analysis) %>
+<br /><br />
 <% analysis_dates_table = render "analysis_dates_table", analysis: @analysis %>
 <%= render "components/card",  content: analysis_dates_table, title: "Dates"  %>
 
