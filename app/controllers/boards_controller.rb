@@ -74,6 +74,8 @@ class BoardsController < ApplicationController
         boards_response = HTTParty.post("https://api.trello.com/1/cards?key=#{user.key}&token=#{user.token}&idList=#{list_id}", body: body.to_json, headers: headers)
         if boards_response.code != 200
           msg = boards_response.body
+        else
+          msg = msg + " #{card.name}"
         end
       }
     }
