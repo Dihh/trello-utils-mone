@@ -81,9 +81,12 @@ class AnalysesController < ApplicationController
 
   # POST /analyses/1/sync_data or /analyses/1/sync_data.json
   def sync_data
-
-    today = (Time.now - 3.hours).to_date
-    analysis_date = @analysis.analysis_dates.find {|analysis_date| analysis_date.date == today}
+    if(params[:date])
+      date = params[:date].to_date
+    else
+      date = (Time.now - 3.hours).to_date
+    end
+    analysis_date = @analysis.analysis_dates.find {|analysis_date| analysis_date.date == date}
     msg = "sync failed"
     if analysis_date
       board = @analysis.board
@@ -119,7 +122,7 @@ class AnalysesController < ApplicationController
         date_values.each { |date_value| date_value.save }
         zeros_date_values.each { |date_value| date_value.save }
       end
-      msg = "Data was successfully synced. (#{today})"
+      msg = "Data was successfully synced. (#{date})"
     end
 
     

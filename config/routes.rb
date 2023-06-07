@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :analyses do
     get "/:id/edit_date_values", to: "analyses#edit_date_values", on: :collection, as: "edit_date_values"
     post "/:id/update_date_values", to: "analyses#update_date_values", on: :collection, as: "update_date_values"
-    get "/:id/sync_data", to: "analyses#sync_data", on: :collection, as: "sync_data"
+    post "/:id/sync_data", to: "analyses#sync_data", on: :collection, as: "sync_data"
   end
   resources :lists
   resources :boards do

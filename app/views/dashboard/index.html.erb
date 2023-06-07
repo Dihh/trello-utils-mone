@@ -1,4 +1,13 @@
 <p style="color: green"><%= notice %></p>
-<%= link_to "Sync data", sync_data_analyses_path(@analysis) %>
+<%= link_to "Sync data", sync_data_analyses_path(@analysis), data: { turbo_method: :post } %>
+<form method="POST" action="<%= sync_data_analyses_path(@analysis) %>" >
+    <select name="date">
+        <% @analysis.analysis_dates.each do |analysis_date| %>
+            <option value="<%= analysis_date.date %>"><%= analysis_date.date %></option>
+        <% end %>
+    </select>
+    <input type="submit">
+</form>
+<br /><br />
 <% line_chart = render "line_chart", dashboard: @dashboard %>
 <%= render "components/card", content: line_chart, title: ""%>
