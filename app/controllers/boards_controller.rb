@@ -59,21 +59,26 @@ class BoardsController < ApplicationController
 
   def execute_recurrent_cards
     user = @board.user
+    msg = "Board recurrent cards created."
     @board.recurrent_cards.each {|card|
       card.lists.each {|list|
-        list_id = list.id
+        list_id = list.trello_id
         body = {
           name: card.name,
-          idLabels: card.labels.map { |label| label.label.id},
+          idLabels: card.labels.map { |label| label.trello_id},
+
         }
         headers = {
           "Content-Type": "application/json"
         }
         boards_response = HTTParty.post("https://api.trello.com/1/cards?key=#{user.key}&token=#{user.token}&idList=#{list_id}", body: body.to_json, headers: headers)
+        if boards_response.code != 200
+          msg = boards_response.body
+        end
       }
     }
     respond_to do |format|
-      format.html { redirect_to @board, notice: "Board recurrent cards created." }
+      format.html { redirect_to @board, notice: msg }
       format.json { head :no_content }
     end
   end
