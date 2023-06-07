@@ -82,14 +82,14 @@ class AnalysesController < ApplicationController
   # POST /analyses/1/sync_data or /analyses/1/sync_data.json
   def sync_data
 
-    analysis_date = @analysis.analysis_dates.find {|analysis_date| analysis_date.date == (Date.today - 3.hours).to_date}
-    
+    today = (Time.now - 3.hours).to_date
+    analysis_date = @analysis.analysis_dates.find {|analysis_date| analysis_date.date == today}
+    msg = "sync failed"
     if analysis_date
       board = @analysis.board
       user = board.user
       cards_response = HTTParty.get("https://api.trello.com/1/boards/#{board.short_link}/cards?key=#{user.key}&token=#{user.token}")
       cards = JSON.parse(cards_response.body)
-      
       analysis_lists_ids = @analysis.lists.map { |list| list.trello_id }
       date_values = []
 
@@ -119,12 +119,12 @@ class AnalysesController < ApplicationController
         date_values.each { |date_value| date_value.save }
         zeros_date_values.each { |date_value| date_value.save }
       end
-
+      msg = "Data was successfully synced. (#{today})"
     end
 
     
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Data was successfully synced." }
+      format.html { redirect_to root_path, notice: msg }
       format.json { render :show, status: :ok, location: @analysis }
     end
   end
