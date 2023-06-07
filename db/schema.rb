@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_205159) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_06_224517) do
   create_table "analyses", force: :cascade do |t|
     t.string "name"
     t.string "board_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_205159) do
     t.datetime "updated_at", null: false
     t.string "trello_id"
     t.integer "user_id"
+    t.string "short_link"
   end
 
   create_table "date_values", force: :cascade do |t|

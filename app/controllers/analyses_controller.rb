@@ -1,5 +1,5 @@
 class AnalysesController < ApplicationController
-  before_action :set_analysis, only: %i[ show edit update destroy edit_date_values update_date_values ]
+  before_action :set_analysis, only: %i[ show edit update destroy edit_date_values update_date_values sync_data ]
 
   # GET /analyses or /analyses.json
   def index
@@ -54,12 +54,12 @@ class AnalysesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /analyses/1/edit_date_values or /analyses/1/edit_date_values.json
+  # POST /analyses/1/edit_date_values or /analyses/1/edit_date_values.json
   def update_date_values
     values = params[:values]
     lists = params[:lists]
     analysis_dates = params[:analysis_dates]
-    dateValues = values.each_with_index.map { |value, index| 
+    date_values = values.each_with_index.map { |value, index| 
       dateValue = DateValue.find_by({list_id: lists[index], analysis_date_id: analysis_dates[index]})
       if dateValue
         dateValue.value = value
@@ -70,11 +70,61 @@ class AnalysesController < ApplicationController
     }
 
     AnalysisDate.transaction do
-      dateValues.each { |dateValue| dateValue.save }
+      date_values.each { |date_value| date_value.save }
     end
 
     respond_to do |format|
       format.html { redirect_to analysis_url(@analysis), notice: "Analysis was successfully updated." }
+      format.json { render :show, status: :ok, location: @analysis }
+    end
+  end
+
+  # POST /analyses/1/sync_data or /analyses/1/sync_data.json
+  def sync_data
+
+    analysis_date = @analysis.analysis_dates.find {|analysis_date| analysis_date.date == (Date.today - 3.hours).to_date}
+    
+    if analysis_date
+      board = @analysis.board
+      user = board.user
+      cards_response = HTTParty.get("https://api.trello.com/1/boards/#{board.short_link}/cards?key=#{user.key}&token=#{user.token}")
+      cards = JSON.parse(cards_response.body)
+      
+      analysis_lists_ids = @analysis.lists.map { |list| list.trello_id }
+      date_values = []
+
+      cards.each do |card|
+        if analysis_lists_ids.include? card["idList"]
+          card_list = @analysis.lists.find { |list| list.trello_id == card["idList"] }
+          current_date_value = date_values.find { |date_value| date_value.list == card_list }
+          if current_date_value
+            date_value = current_date_value
+            date_value.value = date_value.value + 1
+          else
+            date_value = analysis_date.date_values.find { |date_value| date_value.list == card_list }
+            if date_value
+              date_value.value = 1
+              date_values.append(date_value)
+            end
+          end
+        end
+      end
+
+      zeros_date_values = analysis_date.date_values.reject {|date_value| date_values.include? date_value}
+      zeros_date_values = zeros_date_values.map { |date_value| 
+        date_value.value = 0
+        date_value
+      }
+      AnalysisDate.transaction do
+        date_values.each { |date_value| date_value.save }
+        zeros_date_values.each { |date_value| date_value.save }
+      end
+
+    end
+
+    
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "Data was successfully synced." }
       format.json { render :show, status: :ok, location: @analysis }
     end
   end

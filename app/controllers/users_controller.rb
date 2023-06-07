@@ -79,6 +79,7 @@ class UsersController < ApplicationController
           Board.new({
               name: board["name"],
               trello_id: board["id"],
+              short_link: board["shortLink"],
               lists: lists.map { |list|
                 List.new({
                   name: list["name"],

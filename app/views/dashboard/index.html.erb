@@ -1,5 +1,4 @@
-<div class="card">
-    <div class="card-body">
-        <canvas id=myChart width="400" height="100" data-controller="dashboard" data-dashboard-data-value="<%= @dashboard.to_json%>"></canvas>
-    </div>
-</div>
+<p style="color: green"><%= notice %></p>
+<%= link_to "Sync data", sync_data_analyses_path(@analysis) %>
+<% line_chart = render "line_chart", dashboard: @dashboard %>
+<%= render "components/card", content: line_chart, title: ""%>
