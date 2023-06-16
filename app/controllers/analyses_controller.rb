@@ -178,14 +178,19 @@ class AnalysesController < ApplicationController
       to_create = dates.reject { |analysis_date|
         analysis_dates.include? analysis_date
       }
+      to_create_date_values = []
       to_create_dates = to_create.map { |date|
         analysis_date = AnalysisDate.new({date: date})
+        to_create_date_values = @analysis.lists.map { |list| 
+          DateValue.new({list_id: list.id, analysis_date: analysis_date, value: nil})
+        }
         analysis_date.analysis = @analysis
         analysis_date
       }
       AnalysisDate.transaction do
         to_remove_dates.destroy_all
         to_create_dates.each { |date| date.save }
+        to_create_date_values.each { |date_value| date_value.save }
       end
     end
 end
