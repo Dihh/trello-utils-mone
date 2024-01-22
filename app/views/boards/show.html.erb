@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 <div>
-  <%= link_to "Back to boards", boards_path %> | <%= link_to "Execute recurrent cards", execute_recurrent_cards_boards_path(@board) %>
+  <%= link_to "Back to boards", boards_path %> | <%= link_to "Execute recurrent cards", execute_recurrent_cards_boards_path(@board) %> | <%= link_to "Get calendar events", execute_calendar_events_boards_path(@board) %>
 </div>
 <br />
 <% board_content = render @board %>

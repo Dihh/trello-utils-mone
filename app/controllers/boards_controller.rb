@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: %i[ show edit update destroy execute_recurrent_cards ]
+  before_action :set_board, only: %i[ show edit update destroy execute_recurrent_cards execute_calendar_events ]
 
   # GET /boards or /boards.json
   def index
@@ -79,6 +79,23 @@ class BoardsController < ApplicationController
         end
       }
     }
+    respond_to do |format|
+      format.html { redirect_to @board, notice: msg }
+      format.json { head :no_content }
+    end
+  end
+
+  def execute_calendar_events
+    calendar_id = params[:calendar_id]
+    api_key = params[:api_key]
+    msg = "execute_calendar_events"
+    boards_response = HTTParty.get("https://content.googleapis.com/calendar/v3/calendars/#{calendar_id}/events?key=#{api_key}")
+    if boards_response.code != 200
+      msg = boards_response.body
+    else
+      msg = msg + " #{boards_response.code}"
+      msg = "#{JSON.parse(boards_response.body)["items"].length()} events"
+    end
     respond_to do |format|
       format.html { redirect_to @board, notice: msg }
       format.json { head :no_content }

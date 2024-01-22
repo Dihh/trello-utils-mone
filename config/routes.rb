@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :lists
   resources :boards do
     get "/:id/execute_recurrent_cards", to: "boards#execute_recurrent_cards", on: :collection, as: "execute_recurrent_cards"
+    get "/:id/execute_calendar_events", to: "boards#execute_calendar_events", on: :collection, as: "execute_calendar_events"
   end
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
